@@ -1,0 +1,8 @@
+node_modules/
+.vercel/
+*.tar.gz
+.DS_Store
+
+.env*
+.agents/
+skills-lock.json

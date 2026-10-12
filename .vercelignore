@@ -1,0 +1,7 @@
+.git/
+node_modules/
+.env*
+.agents/
+.vercel/
+skills-lock.json
+*.tar.gz

@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {Chess} from '../dist/chess.js';
+import {chooseMove} from '../dist/engine.js';
+test('starting position has 8902 legal positions at depth 3',()=>{assert.equal(new Chess().perft(3),8902);});
+test('castling moves king and rook, cannot castle through check',()=>{const g=new Chess('r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1');g.move('O-O');assert.equal(g.get('g1').type,'k');assert.equal(g.get('f1').type,'r');const checked=new Chess('r3k2r/8/8/8/2b5/8/8/R3K2R w KQkq - 0 1');assert.ok(!checked.moves().includes('O-O'));});
+test('en passant removes the passed pawn',()=>{const g=new Chess();['e4','a6','e5','d5','exd6'].forEach(m=>g.move(m));assert.equal(g.get('d5'),undefined);assert.equal(g.get('d6').color,'w');});
+test('promotion supports queen, rook, bishop and knight',()=>{for(const type of ['q','r','b','n']){const g=new Chess('7k/P7/8/8/8/8/8/7K w - - 0 1');g.move({from:'a7',to:'a8',promotion:type});assert.equal(g.get('a8').type,type);}});
+test('checkmate and stalemate are distinct',()=>{const g=new Chess();['f3','e5','g4','Qh4#'].forEach(m=>g.move(m));assert.ok(g.isCheckmate());assert.ok(!g.isStalemate());const s=new Chess('7k/5K2/6Q1/8/8/8/8/8 b - - 0 1');assert.ok(s.isStalemate());assert.ok(!s.isCheck());});
+test('threefold repetition survives replay used by saved games',()=>{const g=new Chess();['Nf3','Nf6','Ng1','Ng8','Nf3','Nf6','Ng1','Ng8'].forEach(m=>g.move(m));const restored=new Chess();g.history().forEach(m=>restored.move(m));assert.ok(restored.isThreefoldRepetition());});
+test('all bot levels find immediate mate and return a legal move',()=>{for(const level of [1,2,3]){const g=new Chess();['f3','e5','g4'].forEach(m=>g.move(m));const move=chooseMove(g.fen(),level,{budget:1500,random:()=>.5});g.move(move);assert.ok(g.isCheckmate(),`level ${level} missed mate`);}});
+test('bot gives legal responses across a short game and keeps FEN input intact',()=>{const g=new Chess();for(let i=0;i<12&&!g.isGameOver();i++){const fen=g.fen();const move=chooseMove(fen,2,{budget:250});assert.ok(move);assert.equal(g.fen(),fen);g.move(move);}});

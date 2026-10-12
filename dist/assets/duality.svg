@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="194" viewBox="0 0 760 194" fill="none">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#260914"/><stop offset=".44" stop-color="#160a19"/><stop offset=".54" stop-color="#0b1020"/><stop offset="1" stop-color="#061b36"/></linearGradient>
+    <linearGradient id="fire" x1="67" y1="16" x2="315" y2="170" gradientUnits="userSpaceOnUse"><stop stop-color="#ff2848"/><stop offset=".56" stop-color="#f14c72"/><stop offset="1" stop-color="#f2a2b5"/></linearGradient>
+    <linearGradient id="ice" x1="690" y1="18" x2="437" y2="176" gradientUnits="userSpaceOnUse"><stop stop-color="#55eeff"/><stop offset=".53" stop-color="#3388ff"/><stop offset="1" stop-color="#a3d5ff"/></linearGradient>
+    <radialGradient id="redGlow" cx="0" cy="0" r="1" gradientTransform="matrix(183 93 -76 150 167 78)" gradientUnits="userSpaceOnUse"><stop stop-color="#fd133a" stop-opacity=".65"/><stop offset="1" stop-color="#fd133a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blueGlow" cx="0" cy="0" r="1" gradientTransform="matrix(-185 96 77 148 592 78)" gradientUnits="userSpaceOnUse"><stop stop-color="#064eff" stop-opacity=".68"/><stop offset="1" stop-color="#064eff" stop-opacity="0"/></radialGradient>
+    <clipPath id="clip"><rect width="760" height="194" rx="6"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <path fill="url(#base)" d="M0 0h760v194H0z"/><path fill="url(#redGlow)" d="M0 0h380v194H0z"/><path fill="url(#blueGlow)" d="M380 0h380v194H380z"/>
+    <path fill="#ff2448" fill-opacity=".24" d="M0 22h760v2H0zM0 105h760v1H0zM0 152h760v2H0z"/><path fill="#60f3ff" fill-opacity=".25" d="M0 48h760v1H0zM0 131h760v2H0zM0 177h760v1H0z"/>
+    <path stroke="#ff3554" stroke-opacity=".34" d="M18 0v194M31 0v86M341 0v194"/><path stroke="#49dff8" stroke-opacity=".38" d="M420 0v194M727 0v194M743 82v112"/>
+    <g opacity=".94">
+      <path fill="#160913" d="M18 194V96Q22 35 78 14q38-15 81 1 39 14 63 51l32 28-20 8 18 17-27 9q-9 32-37 43l1 23z"/>
+      <path fill="url(#fire)" d="M68 194v-42c-18-13-27-30-28-49-3-37 21-67 58-76 43-10 82 9 96 42l9 19 26 14-19 9 15 12-27 7c-3 19-13 31-32 39l-1 25z"/>
+      <path fill="#280b1b" d="M30 100Q24 51 70 23 112-3 158 17l-12 14q-34-17-66 3Q47 59 48 97l13-17q24-13 39-34 8 32 40 43 16-2 24 3-21 4-26 17l21 1q-21 10-27 32-19-12-32-25-17-15-31-15-17-1-24 18l-7-20-8 48q-15-15-15-48"/>
+      <path stroke="#ffe0e8" stroke-opacity=".8" stroke-width="2" d="M63 105q22-19 46-1m-42-3 31 5m48-31q17 11 22 25m-7 29q-18 13-33 6m18 24-9 35m16-57 12 5"/>
+      <path fill="#fff1f5" d="m78 103 18 4-16 3z"/><path stroke="#521329" stroke-width="2" d="m128 129 18 2-10 4"/>
+      <path stroke="#ff365b" stroke-width="3" d="M23 80 90 64m-61 68 44-17m156-66-34 28m52 55-31-4"/>
+      <path fill="#ff536e" d="m112 112 4 8 9 2-8 4-2 9-4-9-9-2 8-4z"/>
+    </g>
+    <g opacity=".96">
+      <path fill="#060d1a" d="M742 194V96q-4-61-60-82-38-15-81 1-39 14-63 51l-32 28 20 8-18 17 27 9q9 32 37 43l-1 23z"/>
+      <path fill="url(#ice)" d="M692 194v-42c18-13 27-30 28-49 3-37-21-67-58-76-43-10-82 9-96 42l-9 19-26 14 19 9-15 12 27 7c3 19 13 31 32 39l1 25z"/>
+      <path fill="#071426" d="M730 100q6-49-40-77-42-26-88-6l12 14q34-17 66 3 33 22 32 60l-13-17q-24-13-39-34-8 32-40 43-16-2-24 3 21 4 26 17l-21 1q21 10 27 32 19-12 32-25 17-15 31-15 17-1 24 18l7-20 8 48q15-15 15-48"/>
+      <path stroke="#d9fbff" stroke-opacity=".87" stroke-width="2" d="M697 105q-22-19-46-1m42-3-31 5m-48-31q-17 11-22 25m7 29q18 13 33 6m-18 24 9 35m-16-57-12 5"/>
+      <path fill="#e7fcff" d="m682 103-18 4 16 3z"/><path stroke="#123050" stroke-width="2" d="m632 129-18 2 10 4"/>
+      <path stroke="#38dff4" stroke-width="3" d="M737 80 670 64m61 68-44-17m-156-66 34 28m-52 55 31-4"/>
+      <path fill="#69efff" d="m648 112-4 8-9 2 8 4 2 9 4-9 9-2-8-4z"/>
+    </g>
+    <path fill="#f7d9e2" fill-opacity=".95" d="M378 0h4v116l-2 10-2-10z"/><path fill="#48e8ff" fill-opacity=".78" d="M374 34h3v44l-3 5zM383 112h3v48h-3zM379 147h2v47h-2z"/>
+    <path fill="#ff274c" fill-opacity=".6" d="M0 186h345v2H0zM26 190h274v1H26z"/><path fill="#3eeaff" fill-opacity=".66" d="M414 186h346v2H414zM459 190h275v1H459z"/>
+    <text x="22" y="174" fill="#fff5f6" font-family="Jura, sans-serif" font-size="11" font-weight="600" letter-spacing="4">EMBER</text>
+    <text x="414" y="174" fill="#e4fbff" font-family="Jura, sans-serif" font-size="11" font-weight="600" letter-spacing="4">FROST</text>
+  </g>
+</svg>

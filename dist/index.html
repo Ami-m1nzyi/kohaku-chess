@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#142c3b"><meta name="description" content="Kohaku — шахматы в своём ритме. Играйте с другом или ботом.">
+  <title>Kohaku — шахматы в своём ритме</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23142c3b'/%3E%3Ctext x='32' y='49' text-anchor='middle' font-size='50' fill='%23f3a38a'%3E♞%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css?v=20261012-4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div>
+  <header class="header"><a class="brand" href="./" aria-label="Kohaku — главная"><span class="brand-mark">♞</span><span>kohaku<span class="brand-caption">CHESS & CHILL</span></span></a><nav aria-label="Настройки атмосферы"><button id="language-toggle" class="language-toggle" type="button" aria-label="Language / Язык" title="Language / Язык">EN</button><button id="shop-open" class="quiet">Магазин</button><button id="profile-open" class="profile-trigger"><span id="profile-avatar" class="profile-avatar">♙</span><span id="profile-name">Игрок</span></button><span class="nav-divider"></span><button id="help" class="quiet">Как играть <span>↗</span></button><span class="nav-divider"></span><button id="focus" class="quiet" aria-pressed="false"><span>◉</span> <span class="focus-label">Фокус</span></button></nav></header>
+  <main>
+    <div class="game-layout">
+      <section class="board-column" id="board-column" aria-label="Шахматная партия">
+        <div class="player-row" id="top-player"><div class="player-info"><div class="avatar bot-avatar">✦</div><div><strong id="top-name">Бот Кои</strong><span id="top-detail">Спокойный соперник</span></div></div><div class="clock" id="top-clock">∞</div></div>
+        <div class="board-frame"><div id="board" class="board" role="group" aria-label="Шахматная доска"></div></div>
+        <div class="player-row" id="bottom-player"><div class="player-info"><div class="avatar human-avatar">♙</div><div><strong id="bottom-name">Вы</strong><span id="bottom-detail">Белые фигуры</span></div></div><div class="clock" id="bottom-clock">∞</div></div>
+        <div class="board-tools"><div class="turn-label"><span class="turn-dot"></span><span id="status" role="status" aria-live="polite">Ваш ход</span></div><div><button id="undo" class="icon-button" aria-label="Отменить ход" title="Отменить ход">↶</button><button id="hint" class="icon-button" aria-label="Подсказать ход" title="Подсказать ход">✧</button><button id="flip" class="icon-button" aria-label="Перевернуть доску" title="Перевернуть доску">⇅</button><button id="zoom-board" class="icon-button board-view-button" aria-label="Увеличить доску" aria-pressed="false" title="Увеличить доску">⤢</button><button id="fullscreen-board" class="icon-button board-view-button" aria-label="Развернуть доску на весь экран" aria-pressed="false" title="На весь экран">⛶</button></div></div>
+      </section>
+      <aside class="sidebar">
+        <section class="panel game-panel"><div class="duality-art" aria-hidden="true"><img src="assets/ember.jpg" alt=""><img src="assets/frost.jpg" alt=""><span>EMBER</span><span>FROST</span></div><div class="panel-heading"><h2>Ваша партия</h2><span class="small-symbol">✳</span></div>
+          <div class="tabs" role="tablist" aria-label="Панель партии"><button id="settings-tab" role="tab" aria-selected="true" aria-controls="settings-panel">Настройки</button><button id="history-tab" role="tab" aria-selected="false" aria-controls="history-panel">История <span id="move-count">0</span></button><button id="diary-tab" role="tab" aria-selected="false" aria-controls="diary-panel">Дневник <span id="diary-count">0</span></button></div>
+          <div id="settings-panel" role="tabpanel" aria-labelledby="settings-tab">
+            <label class="field-label">С кем сыграем?</label><div class="segmented" id="mode-options"><button data-mode="local" class="selected" aria-pressed="true">♙ С другом</button><button data-mode="online" aria-pressed="false">↗ Онлайн</button><button data-mode="bot" aria-pressed="false">✦ С ботом</button></div>
+            <div id="online-panel" class="online-panel" hidden>
+              <div class="online-actions"><button id="create-room" class="secondary">Создать партию</button><div class="join-row"><input id="room-code" type="text" inputmode="text" autocomplete="off" maxlength="16" placeholder="Код приглашения" aria-label="Код приглашения"><button id="join-room" class="secondary">Войти</button></div></div>
+              <div id="room-card" class="room-card" hidden><div class="room-card-heading"><span id="room-status">Ожидаем друга…</span><span id="room-code-display" class="room-code"></span></div><div class="room-share"><button id="copy-room-link" class="secondary">Скопировать ссылку</button><button id="copy-room-code" class="secondary">Скопировать код</button></div><button id="cancel-room" class="room-cancel">Закрыть приглашение</button></div>
+            </div>
+            <div id="difficulty-field"><label class="field-label">Уровень бота</label><div class="levels" id="level-options"><button data-level="1" aria-pressed="false">Лёгкий</button><button data-level="2" class="selected" aria-pressed="true">Средний</button><button data-level="3" aria-pressed="false">Сложный</button></div><p class="field-note" id="level-note">Продумывает ответ. Держит в тонусе.</p></div>
+            <div class="two-fields"><div id="color-field"><label class="field-label" id="color-label">Ваша сторона</label><div class="custom-select" data-select="color"><button class="select-trigger" id="color-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="color-label color-value"><span id="color-value">○ Белые</span><span class="select-chevron" aria-hidden="true">⌄</span></button><div class="select-menu" role="listbox" aria-labelledby="color-label" hidden><button type="button" role="option" data-value="w" aria-selected="true">○ Белые</button><button type="button" role="option" data-value="b" aria-selected="false">● Чёрные</button><button type="button" role="option" data-value="random" aria-selected="false">◐ Случайно</button></div></div></div><div><label class="field-label" id="time-label">Время на игру</label><div class="custom-select" data-select="time"><button class="select-trigger" id="time-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="time-label time-value"><span id="time-value">Без спешки ∞</span><span class="select-chevron" aria-hidden="true">⌄</span></button><div class="select-menu" role="listbox" aria-labelledby="time-label" hidden><button type="button" role="option" data-value="0" aria-selected="true">Без спешки ∞</button><button type="button" role="option" data-value="5" aria-selected="false">5 минут</button><button type="button" role="option" data-value="10" aria-selected="false">10 минут</button><button type="button" role="option" data-value="15" aria-selected="false">15 минут</button></div></div></div></div>
+            <button id="new-game" class="primary">Новая игра <span>↗</span></button><p class="settings-note" id="settings-note">Вдохните. Сделайте первый ход.</p>
+          </div>
+          <div id="history-panel" role="tabpanel" aria-labelledby="history-tab" hidden><div class="history-header"><span>№</span><span>Белые</span><span>Чёрные</span></div><div id="history" class="history"></div><button id="export" class="secondary full">Скачать партию · PGN ↓</button></div>
+          <div id="diary-panel" role="tabpanel" aria-labelledby="diary-tab" hidden><div id="diary-list" class="diary-list"></div></div>
+          <div class="panel-footer"><span id="game-mode">✦ Игра с ботом</span><button id="resign">Сдаться <span>⚑</span></button></div>
+        </section>
+        <div class="zen-note"><span>「</span><p>Хороший ход начинается<br>со спокойной мысли.</p><span>」</span></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><span>64 клетки. Бесконечно много возможностей.</span><span>Сделано для неспешных партий <span class="orange">✦</span></span></footer>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <dialog id="dialog"><button id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div id="dialog-content"></div></dialog>
+  <script src="vendor/peerjs.min.js" defer></script>
+  <script type="module" src="app.js?v=20261012-4"></script>
+</body>
+</html>

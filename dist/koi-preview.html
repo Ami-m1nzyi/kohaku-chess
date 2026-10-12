@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Два дизайна фигур кои — Kohaku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:Jura,Arial,sans-serif;color:#f4eee3;background:#07192e;font-synthesis:none}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#254866 0,#102b49 43%,#07192e 100%);padding:34px 22px 52px}
+    main{width:min(1180px,100%);margin:auto}
+    header{margin:0 0 28px;padding:0 4px}
+    .eyebrow{color:#f0a09a;font-size:13px;font-weight:700;letter-spacing:.19em;text-transform:uppercase}
+    h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:10px 0;color:#f8f0e5}
+    header p,.description{color:#b9c7cc;line-height:1.55}
+    .options{display:grid;grid-template-columns:1fr;max-width:760px;margin:auto;gap:22px}
+    article{min-width:0;border:1px solid #52666c;border-radius:20px;background:rgba(13,36,51,.94);padding:20px;box-shadow:0 18px 48px #020a1570}
+    article.is-picked{border-color:#ec9284;box-shadow:0 0 0 1px #ec928455,0 18px 48px #020a1570}
+    .option-head{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-bottom:15px}
+    h2{font-size:25px;margin:0 0 3px}
+    .tag{color:#f0a09a;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+    .description{font-size:14px;margin:0 0 16px;min-height:44px}
+    .board{display:grid;grid-template-columns:repeat(8,1fr);aspect-ratio:1;border:8px solid #e7e0d2;border-radius:8px;overflow:hidden;box-shadow:0 8px 22px #020a1580}
+    .square{display:grid;place-items:center;position:relative;min-width:0;min-height:0;background:#eee6dc}
+    .square.dark{background:#382e3b}
+    .piece{width:91%;height:91%;overflow:visible;filter:drop-shadow(0 2px 1px #101a2590)}
+    .piece-black{transform:scaleX(-1)}
+    .piece.koi-piece{filter:drop-shadow(0 2px 1px #101a2590)}
+    .coordinates{display:flex;justify-content:space-between;color:#a9b9bf;font-size:12px;margin:9px 2px 0}
+    .choice-note{margin:26px 4px 0;border-left:3px solid #f0a09a;padding:8px 14px;color:#c4d0d1;line-height:1.5}
+    @media(max-width:620px){.options{grid-template-columns:1fr;max-width:600px;margin:auto}header{max-width:600px;margin-left:auto;margin-right:auto}.description{min-height:0}}
+    @media(max-width:460px){body{padding:22px 12px 34px}article{padding:14px;border-radius:15px}.board{border-width:5px}.option-head{display:block}.tag{display:inline-block;margin-top:8px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">Kohaku · варианты фигур</div>
+      <h1>Две стаи кои</h1>
+      <p>«Кохаку · Волна» восстановлен в прежнем гладком стиле и сохранён вместо старого «Кои · Кохаку».</p>
+    </header>
+    <section class="options" aria-label="Два варианта дизайна фигур">
+      <article class="is-picked">
+        <div class="option-head"><h2>Кохаку · Волна</h2><span class="tag">Сохранённая основа</span></div>
+        <p class="description">Плавные силуэты кои с волнистыми хвостами и коралловыми пятнами.</p>
+        <div id="board-wave" class="board" aria-label="Доска с дизайном Волна"></div>
+        <div class="coordinates"><span>Белые — коралловые пятна</span><span>Чёрные — зеркально</span></div>
+      </article>
+      <article>
+        <div class="option-head"><h2>Кохаку · Плавник</h2><span class="tag">Для сравнения</span></div>
+        <p class="description">Компактные округлые карпы с выразительными плавниками и красно-белыми пятнами кои.</p>
+        <div id="board-fins" class="board" aria-label="Доска с дизайном Плавник"></div>
+        <div class="coordinates"><span>Белые — коралловые пятна</span><span>Чёрные — зеркально</span></div>
+      </article>
+    </section>
+    <p class="choice-note">В магазине этот дизайн отображается под именем «Кохаку · Волна» вместо «Кои · Кохаку».</p>
+  </main>
+  <script type="module">
+    import {pieceSVG} from './pieces.js';
+    const backRank=['r','n','b','q','k','b','n','r'];
+    const files=['a','b','c','d','e','f','g','h'];
+    for(const [id,design] of [['board-fins','koi-fins'],['board-wave','koi-wave']]){
+      const board=document.getElementById(id);
+      for(let rank=8;rank>=1;rank--)for(let file=0;file<8;file++){
+        const square=document.createElement('div');
+        square.className='square'+((rank+file)%2?' dark':'');
+        const type=rank===8?backRank[file]:rank===7?'p':rank===2?'p':rank===1?backRank[file]:null;
+        const color=rank>=7?'b':'w';
+        if(type)square.innerHTML=pieceSVG(type,color,design,'kohaku');
+        board.append(square);
+      }
+    }
+  </script>
+</body>
+</html>
